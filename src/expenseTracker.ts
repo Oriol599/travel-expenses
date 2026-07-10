@@ -1,25 +1,30 @@
-export interface ResultadoExTracker {
+export interface ExpenseReport {
   travelDays: number;
   expenseDays: number;
   dailyBudget: number;
   averageDailyExpense: number;
   underBudget: boolean;
-  rating: number;
+  rating: 1 | 2 | 3;
   feedback: string;
 }
 
 export function generateExpenseReport(
   dailyExpenses: number[],
   dailyBudget: number,
-): ResultadoExTracker {
+): ExpenseReport {
+
+  const negativeExpenses = dailyExpenses.some((expense) => expense < 0);
+  if (negativeExpenses) {
+    throw new Error("Expenses cannot be negative");
+  }
   // Calculs
   const numDaysTraveled = dailyExpenses.length; // dis viajados
   const daysWithExpense = dailyExpenses.filter((dwe) => dwe !== 0).length; // numero de dias con gasto
   const totEx = dailyExpenses.reduce((acc, curr) => acc + curr, 0); // gastos del viaje
-  const avDailyExp = totEx / daysWithExpense; // Gasto promedio
+  const avDailyExp = totEx / numDaysTraveled; // Gasto promedio
   const underBudget = avDailyExp <= dailyBudget ? true : false;
 
-  let myRating: number;
+  let myRating: 1 | 2 | 3;
   let myfFeedback: string;
 
   if (avDailyExp <= dailyBudget) {

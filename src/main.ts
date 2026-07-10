@@ -2,7 +2,15 @@ import { calculateBudgetStatus } from "./budgetCalculator";
 import { generateExpenseReport } from "./expenseTracker";
 
 const result = calculateBudgetStatus(101, 100);
-console.log(result)
+console.log(result);
 
-const expenseReport = generateExpenseReport([50, 0, 120, 85], 100);
-console.log(expenseReport);
+try {
+  const expenseReport = generateExpenseReport([50, 0, 120, 85], 100);
+  console.log(expenseReport);
+} catch (error: unknown) {
+  if (error instanceof Error) {
+    console.error(`Error de l'aplicació: ${error.message}`);
+  } else {
+    console.error("S'ha produït un error inesperat.");
+  }
+}
