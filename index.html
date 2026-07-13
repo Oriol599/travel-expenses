@@ -5,9 +5,69 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>travel-expenses</title>
+    <link rel="stylesheet" href="./src/style.css" />
   </head>
+
   <body>
     <div id="app"></div>
+
+    <main>
+      <section class="banner">
+        <h1>Travel Expense Calculator</h1>
+      </section>
+
+      <section class="grid-container">
+        <div>
+          <input
+            type="number"
+            name=""
+            id="totExpenses"
+            placeholder="insert expenses"
+          />
+          <input
+            type="number"
+            name=""
+            id="budget"
+            placeholder="declare budget"
+          />
+          <button id="calculateBudget">Calculate budget</button>
+        </div>
+        <div id="response">Results are shown here ...</div>
+      </section>
+
+      <section class="grid-container-expenses">
+        <div class="column input-column">
+          <h2>Add expenses</h2>
+          <input
+            type="number"
+            id="expense-amount"
+            placeholder="Expense amount"
+          />
+          <button id="add-expense">Add expense</button>
+
+          <hr />
+
+          <input
+            type="number"
+            id="daily-budget"
+            placeholder="Daily budget"
+          />
+          <button id="generate-report">Generate report</button>
+        </div>
+        <div class="column result-column">
+          <h2>Expenses list</h2>
+          <div id="expenses-list"></div>
+          <div id="expenses-response"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>&copy; travel expenses</p>
+      </div>
+    </footer>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
